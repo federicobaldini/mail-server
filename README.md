@@ -1,6 +1,6 @@
 # mail-server
 
-An e-mail newsletter multi thread server that provides HTML, CSS and JavaScript files, using Rust.
+An email newsletter multi thread server, using Rust.
 
 Credit: "Zero to Production in Rust" book by Luca Palmieri
 
