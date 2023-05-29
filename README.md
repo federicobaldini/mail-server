@@ -1,8 +1,8 @@
 # mail-server
 
-An email newsletter server to subscribe and receive mail focused on an enterprise implementation, using Rust.
+A newsletter server that sends emails after subscribing, focused on an enterprise implementation, using Rust.
 
-Credit: "Zero to Production in Rust" book by Luca Palmieri
+Credit: "Zero to Production in Rust" book by Luca Palmieri.
 
 ## Requirements
 
