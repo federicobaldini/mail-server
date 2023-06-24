@@ -2,7 +2,7 @@
 
 A newsletter server that sends emails after subscribing, focused on an enterprise implementation, using Rust.
 
-Credit: "Zero to Production in Rust" book by Luca Palmieri.
+Credit: "Zero to Production in Rust" book by [Luca Palmieri](https://github.com/LukeMathWalker).
 
 ## Requirements
 
