@@ -1,3 +1,5 @@
+use std::net::TcpListener;
+
 use actix_web::dev::Server;
 use actix_web::{web, App, HttpRequest, HttpResponse, HttpServer};
 
@@ -6,22 +8,24 @@ use actix_web::{web, App, HttpRequest, HttpResponse, HttpServer};
 /// This function handles the incoming HTTP request and returns a 200 OK response
 /// with no body, indicating that the server is healthy.
 async fn health_check(_: HttpRequest) -> HttpResponse {
-  // Return a 200 OK response with no body indicating the server is healthy.
   HttpResponse::Ok().finish()
 }
 
-/// Runs the HTTP server and returns a `Server` instance or an error.
+/// Runs the HTTP server using the provided TCP listener.
 ///
-/// This function creates an HTTP server, configures the routes, and binds it to
-/// the local address and port 8000. It returns a `Server` instance if the binding
-/// is successful, otherwise it returns an `std::io::Error`.
-pub fn run() -> Result<Server, std::io::Error> {
-  // Create an HTTP server and configure routes.
-  let server: Server = HttpServer::new(|| {
-    App::new().route("/health_check", web::get().to(health_check)) // Define a route for the health check endpoint.
-  })
-  .bind("127.0.0.1:8000")? // Bind the server to the local address and port 8000.
-  .run();
+/// ### Arguments
+///
+/// * `listener` - A `TcpListener` instance representing the listener socket.
+///
+/// ### Returns
+///
+/// A `Result` containing the `Server` instance if the server started successfully,
+/// or an `std::io::Error` if an error occurred.
+pub fn run(listener: TcpListener) -> Result<Server, std::io::Error> {
+  let server: Server =
+    HttpServer::new(|| App::new().route("/health_check", web::get().to(health_check)))
+      .listen(listener)? // Attempts to bind the TCP listener to the server.
+      .run(); // Starts the server.
 
   // Run the server and return the result indicating the success or failure of server binding.
   Ok(server)
