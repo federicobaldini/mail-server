@@ -18,3 +18,15 @@ reqwest = "0.11"
 actix-web = "4"
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 serde = { version = "1", features = ["derive"]}
+
+[dependencies.sqlx]
+version = "0.5.7"
+default-features = false
+features = [
+    "runtime-actix-rustls", # tells sqlx to use the actix runtime for its futures and rustls as TLS backend
+    "macros", # gives the access to sqlx::query! and sqlx::query_as!
+    "postgres", # unlocks Postgres-specific functionality (e.g. non-standard SQL types)
+    "uuid", # adds support for mapping SQL UUIDs to the Uuid type from the uuid crate
+    "chrono", # adds support for mapping SQL timestamptz to the DateTime<T> type from the chrono crate
+    "migrate" # gives us access to the same functions used under the hood by sqlx-cli to manage migrations
+]
