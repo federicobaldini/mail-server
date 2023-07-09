@@ -1,6 +1,9 @@
 use std::net::TcpListener;
 
-use mail_server::run;
+mod startup;
+mod routes;
+
+use startup::run;
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
