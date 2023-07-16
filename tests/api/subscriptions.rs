@@ -7,7 +7,7 @@ use crate::helpers::spawn_app;
 async fn subscribe_returns_a_200_for_valid_form_data() {
   let address: String = spawn_app();
   let client: Client = reqwest::Client::new();
-  let body: &str = "name=le%20guin&email=ursula_le_guin%40gmail.com";
+  let body: &str = "name=federico%20baldini&email=federico_baldini%40gmail.com";
 
   // Send a POST request to the '/subscriptions' endpoint with valid form data.
   let response: Response = client
@@ -28,8 +28,8 @@ async fn subscribe_returns_a_400_when_data_is_missing() {
   let address: String = spawn_app();
   let client: Client = reqwest::Client::new();
   let test_cases: Vec<(&str, &str)> = vec![
-    ("name=le%20guin", "missing the email"),
-    ("email=ursula_le_guin%40gmail.com", "missing the name"),
+    ("name=federico%20baldini", "missing the email"),
+    ("email=federico_baldini%40gmail.com", "missing the name"),
     ("", "missing both name and email"),
   ];
 
