@@ -22,6 +22,16 @@ pub struct DatabaseSettings {
   pub database_name: String,
 }
 
+impl DatabaseSettings {
+  /// Returns a connection string for the database based on the configuration settings.
+  pub fn connection_string(&self) -> String {
+    format!(
+      "postgres://{}:{}@{}:{}/{}",
+      self.username, self.password, self.host, self.port, self.database_name
+    )
+  }
+}
+
 /// The `get_configuration()` function retrieves the configuration settings from a file named "configuration"
 /// and returns them as a `Result` containing an instance of the `Settings` struct or a `config::ConfigError` if an error occurs.
 /// It uses the `config` crate to manage the configuration.
