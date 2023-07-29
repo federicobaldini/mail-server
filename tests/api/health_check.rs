@@ -5,7 +5,7 @@ use crate::helpers::{spawn_app, TestApp};
 /// Test function to check if the health check endpoint works.
 #[tokio::test]
 async fn health_check_works() {
-  // Spawn the application and retrieve an instance of TestApp 
+  // Spawn the application and retrieve an instance of TestApp
   let app: TestApp = spawn_app().await;
 
   // Create a new reqwest client
